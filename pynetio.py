@@ -1,3 +1,4 @@
+
 import time
 import socket
 import logging
@@ -16,6 +17,8 @@ class Netio(object):
         self.log = logging.getLogger(__name__)
         self.username, self.password = username, password
         self._states = []
+        self._consumptions = []
+        self.retries = self.MAX_RETRIES
         self.telnet = None
         self.lock = Lock()
         self.connect()
@@ -36,6 +39,11 @@ class Netio(object):
     def states(self):
         """ Get the states """
         return self._states
+
+    @property
+    def consumptions(self):
+        """ For Netio4all devices """
+        return self._consumptions
 
     def update(self):
         """ Update all the switch values """
