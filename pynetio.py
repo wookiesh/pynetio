@@ -16,8 +16,8 @@ class Netio(object):
         self.host, self.port = host, port
         self.log = logging.getLogger(__name__)
         self.username, self.password = username, password
-        self._states = []
-        self._consumptions = []
+        self._states = [False, False, False, False]
+        self._consumptions = [0, 0, 0, 0]
         self.retries = self.MAX_RETRIES
         self.telnet = None
         self.lock = Lock()
