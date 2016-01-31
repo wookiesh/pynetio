@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 
 from os.path import join, dirname, exists
@@ -6,12 +5,13 @@ from distutils.core import setup
 
 
 def read(fname):
+    " read the passed file "
     if exists(fname):
         return open(join(dirname(__file__), fname)).read()
 
 setup(
     name="pynetio",
-    version="0.1.5.3",
+    version="0.1.6",
     py_modules=['pynetio'],
     description="Binding library for Koukaam netio devices",
     author="Joseph Piron (Joseph Piron)",
