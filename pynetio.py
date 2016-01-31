@@ -16,10 +16,10 @@ class Netio(object):
         self.host, self.port = host, port
         self.log = logging.getLogger(__name__)
         self.username, self.password = username, password
-        self._states = [False] * 4
-        self._consumptions = [0] * 4
-        self._cumulatedConsumptions = [0] * 4
-        self._startDates = [""] * 4
+        self.states = [False] * 4
+        self.consumptions = [0] * 4
+        self.cumulatedConsumptions = [0] * 4
+        self.startDates = [""] * 4
         self.retries = self.MAX_RETRIES
         self.telnet = None
         self.lock = Lock()
@@ -37,30 +37,10 @@ class Netio(object):
             self.log.error("Cannot connect to %s (%d)" %
                            (self.host, self.retries))
 
-    @property
-    def states(self):
-        """ Get the states """
-        return self._states
-
-    @property
-    def consumptions(self):
-        """ For Netio4all devices """
-        return self._consumptions
-
-    @property
-    def cumulatedConsumptions(self):
-        """ For Netio4all devices """
-        return self._cumulatedConsumptions
-
-    @property
-    def startDates(self):
-        """ For Netio4all devices """
-        return self._startDates
-
     def update(self):
         """ Update all the switch values """
 
-        self._states = [bool(int(x)) for x in self.get('port list') or '0000']
+        self.states = [bool(int(x)) for x in self.get('port list') or '0000']
 
     # def keep_alive(self):
     #     self.get('version')
