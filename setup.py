@@ -11,7 +11,7 @@ def read(fname):
 
 setup(
     name="pynetio",
-    version="0.1.7",
+    version="0.1.8",
     py_modules=['pynetio'],
     description="Binding library for Koukaam netio devices",
     author="Joseph Piron (Joseph Piron)",

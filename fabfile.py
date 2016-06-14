@@ -10,4 +10,4 @@ def lint():
     local('pylint *.py')
 
 def clean():
-    local('rm -rf dist *.pyc MANIFEST')
+    local('rm -rf dist *.pyc MANIFEST __pycache__ build _.egg-info')

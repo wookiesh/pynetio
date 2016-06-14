@@ -71,6 +71,7 @@ class Netio(object):
                 LOGGER.debug('%s: received %r', self.host, res)
                 if res.split()[0] not in ('100', '250'):
                     LOGGER.warn('command error: %r', res)
+                    return None
                 return res.split()[1]
 
         except (AssertionError):
