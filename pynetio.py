@@ -39,6 +39,7 @@ class Netio(object):
             self.get('login admin admin')
             self.update()
         except socket.gaierror:
+            self.telnet = None
             LOGGER.error("Cannot connect to %s (%d)",
                          self.host, self.retries)
 
@@ -72,7 +73,10 @@ class Netio(object):
                     LOGGER.warn('command error: %r', res)
                 return res.split()[1]
 
-        except (EOFError, socket.gaierror):
+        except (AssertionError):
+            self.connect()
+
+        except (EOFError, socket.gaierror, BrokenPipeError):
             LOGGER.error("Cannot get answer from %s (%d)",
                          self.host, self.retries)
             if self.retries > 0:
@@ -85,4 +89,5 @@ class Netio(object):
 
     def stop(self):
         """ Close the telnet connection """
-        self.telnet.close()
+        if self.telnet:
+            self.telnet.close()

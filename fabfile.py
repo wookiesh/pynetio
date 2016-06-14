@@ -6,6 +6,8 @@ def upload():
     local("python setup.py sdist upload")
     local("rm README")
 
+def lint():
+    local('pylint *.py')
 
 def clean():
     local('rm -rf dist *.pyc MANIFEST')

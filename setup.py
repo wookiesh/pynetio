@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from os.path import join, dirname, exists
-from distutils.core import setup
+from setuptools import setup
 
 
 def read(fname):
@@ -11,7 +11,7 @@ def read(fname):
 
 setup(
     name="pynetio",
-    version="0.1.6",
+    version="0.1.7",
     py_modules=['pynetio'],
     description="Binding library for Koukaam netio devices",
     author="Joseph Piron (Joseph Piron)",
